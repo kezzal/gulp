@@ -1,0 +1,27 @@
+@import './base/variables';
+body {
+    background: $bg;
+    color: $red;
+}
+
+.container {
+    width: 100%;
+    max-width: 900px;
+    background: #ffffff;
+    margin: 0 auto;
+    padding: 10px;
+    h1 {
+        text-align: center;
+    }
+    p {
+        color: red;
+    }
+    a {
+        text-decoration: none;
+        color: $link;
+        transition: all 320ms ease;
+        &:hover {
+            font-weight: bold;
+        }
+    }
+}
