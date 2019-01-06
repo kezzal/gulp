@@ -1,18 +1,15 @@
 var gulp = require('gulp'); // Gulp dans devDependencies
 var rename = require('gulp-rename'); // gulp rename dans devDependencies
-var sass = require('gulp-sass'); // compilateur de sass dans devDependencies
-var autoprefixer = require('gulp-autoprefixer'); // Pour avouter les prefixes de compatibilité vanigateurs.
+var sass = require('gulp-sass'); // Gulp Sass dans devDependencies
+var autoprefixer = require('gulp-autoprefixer'); // Pour ajouter les prefixes de compatibilité navigateurs.
 var sourcemaps = require('gulp-sourcemaps'); // 
 
-// Indiquer la source du document css à compiler
+// css
 var styleSRC = './src/scss/style.scss';
-
-// Indiquer le chemin vers le dossier vers lequel le compilement du css se fera
 var styleDIST = './dist/css/';
 
-// le chemin vers le JS sources
+// JS
 var jsSRC = './src/js/script.js';
-// le chemin vers le dossier qui contiendra le JS compilé de ES6 à ES5
 var jsDIST = './dist/js/';
 
 // GULP STYLE (Compiler le SASS en CSS)
@@ -29,19 +26,20 @@ gulp.task('style', function () {
             browsers: ['last 2 versions'],
             cascade: false
         }))
-        .pipe(rename({ suffix: '.min' })) // Renommer le fichier compilé en 'style.min.css'. Pour utiliser Rename, je dois installer le module comme ceci: npm install --save-dev gulp-rename
-        .pipe(sourcemaps.write('./')) // A tre juste avant le gulp.dest()
+        .pipe(rename({ suffix: '.min' })) // Renommer le fichier compilé en 'style.min.css'.
+        .pipe(sourcemaps.write('./')) // A mettre juste avant le gulp.dest()
         .pipe(gulp.dest(styleDIST)); // Indiquer le dossier vers lequel sera enregistré le css compilé.
 
 });
 
-// Compiler le JavaScript
+// Compiler le JavaScript ES6
 gulp.task('js', function () {
     return gulp.src(jsSRC)
         .pipe(gulp.dest(jsDIST));
 });
 
-gulp.task('default', ['js', 'style']);
+// Style + Js
+gulp.task('default', ['style', 'js']);
 
 
 
